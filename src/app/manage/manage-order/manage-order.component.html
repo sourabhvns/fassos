@@ -1,0 +1,30 @@
+<h3 class="title">MANAGE ORDERS</h3>
+
+<div class="orders">
+  <div class="buttons" (click)="add()" style="margin-left: auto;">
+    ADD ORDER
+  </div>
+</div>
+<div class="orders-list">
+  <div class="header">
+    <div class="column-data" *ngFor = "let item of header">
+      {{item}}
+    </div>
+  </div>
+  <div class="order" *ngFor = "let items of ordersList">
+    <div class="column-data">
+      {{items.refid}}
+    </div>
+    <div class="column-data">
+      {{items.status}}
+    </div>
+    <div class="action" *ngIf= "items.status === 'pending'">
+      <div class="buttons" (click)="cancel(items.refid)" >
+        CANCEL ORDER
+      </div>
+      <div class="buttons" (click)="update(items.refid)">
+        UPDATE ORDER
+      </div>
+    </div>
+  </div>
+</div>

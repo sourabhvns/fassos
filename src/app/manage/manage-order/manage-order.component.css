@@ -1,0 +1,53 @@
+.orders{
+    display: flex;
+    text-align: center;
+    vertical-align: middle;
+    margin-top: 40px;
+}
+.title{
+    color: #3A126C;
+    text-align: center;
+}
+.buttons{
+    background-color: #ffe536;
+    color: #3A126C;
+    border-radius: 2px;
+    font-size: 12px;
+    padding: 5px;
+    box-sizing: border-box;
+    border: 1px solid #ffe536;
+    margin-right: 20px;
+    text-align: center;
+    cursor: pointer;
+    height: 40px;
+}
+
+.orders-list{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    height: 100%;
+    margin: 0 auto 0 auto;
+    border: 1px solid grey;
+}
+.order{
+    border-bottom: 1px solid grey;
+    font-size: 16px;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+    padding: 3%;
+}
+.column-data{
+    width: 30%;
+    text-align: center;
+}
+.action{
+    display: flex;
+}
+.header{
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid grey;
+}

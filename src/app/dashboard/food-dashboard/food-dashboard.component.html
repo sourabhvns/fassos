@@ -1,0 +1,24 @@
+<div>
+  <h3 class="title">
+    Food Exchange Dashboard
+  </h3>
+
+  <div>
+    <mat-form-field>
+      <mat-select placeholder="Filter by" [(value)]="selected" (selectionChange)="onChange($event)">
+        <mat-option *ngFor="let item of option" [value]="item">
+          {{item}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="graph">
+    <canvas baseChart
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [legend]="barChartLegend"
+            [chartType]="barChartType">
+    </canvas>
+  </div>
+</div>
