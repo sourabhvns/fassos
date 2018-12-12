@@ -19,7 +19,7 @@ export class DashboardService {
   filter(time) {
     this.url = environment.api + '/orders';
     const data: any = {
-        'gte' : time,
+        'created__gte' : time,
         'graph' : true
     };
     return this.http.get<any>(this.url, {'params' : data});
