@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, SimpleChange, SimpleChanges, OnChanges} from '@angular/core';
 import { DashboardService } from '../dashboard.service';
+import { ManageService } from '../../manage/manage.service';
 import { WebsocketService, ORDER } from '../dashboard.service';
 import { OrderData } from '../model';
 import {MatFormFieldModule, MatButtonModule, MatCheckboxModule,
@@ -12,7 +13,7 @@ import {MatFormFieldModule, MatButtonModule, MatCheckboxModule,
   styleUrls: ['./food-dashboard.component.css']
 })
 export class FoodDashboardComponent implements OnInit {
-  constructor(private socketService: WebsocketService, private dashboardService: DashboardService) {
+  constructor(private socketService: WebsocketService, private dashboardService: DashboardService, private manageService: ManageService) {
     this.initIoConnection();
    }
   messages: OrderData[] = [];
@@ -81,5 +82,26 @@ export class FoodDashboardComponent implements OnInit {
       }
     });
   }
+
+  downloadReport() {
+    this.manageService.getOrdersList().subscribe(res => {
+      console.log(res);
+      if (res && res['data']) {
+        this.downloadFile(res['data'], 'orderReport');
+      }
+    });
+  }
+
+  downloadFile(data: any, filename: string) {
+    const replacer = (key, value) => value === null ? '' : value;
+    const header = Object.keys(data[0]);
+    const csv = data.map(row => header.map(fieldName => JSON.stringify(row[fieldName],replacer)).join(','));
+    csv.unshift(header.join(','));
+    const csvArray = csv.join('\r\n');
+    const blob = new Blob([csvArray], {type: 'text/csv' });
+   // saveAs(blob, filename + '.csv');
+   const url = window.URL.createObjectURL(blob);
+    window.open(url);
+}
 
 }

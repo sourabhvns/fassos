@@ -3,7 +3,7 @@
     Food Exchange Dashboard
   </h3>
 
-  <div>
+  <div style="display: flex;">
     <mat-form-field>
       <mat-select placeholder="Filter by" [(value)]="selected" (selectionChange)="onChange($event)">
         <mat-option *ngFor="let item of option" [value]="item">
@@ -11,6 +11,9 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
+    <div style="margin-left: auto;cursor: pointer;color: blue;" (click)="downloadReport()">
+      Download Report
+    </div>
   </div>
   <div class="graph">
     <canvas baseChart

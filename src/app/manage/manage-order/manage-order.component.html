@@ -11,12 +11,18 @@
       {{item}}
     </div>
   </div>
+  <div *ngIf = "ordersList.length === 0" style="text-align: center;">
+    No orders till yet. Feeling Hungry then order one.
+  </div>
   <div class="order" *ngFor = "let items of ordersList">
     <div class="column-data">
       {{items.refid}}
     </div>
     <div class="column-data">
       {{items.status}}
+    </div>
+    <div class="column-data">
+      {{items.created}}
     </div>
     <div class="action" *ngIf= "items.status === 'pending'">
       <div class="buttons" (click)="cancel(items.refid)" >

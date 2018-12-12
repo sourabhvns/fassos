@@ -10,7 +10,7 @@ export class ManageOrderComponent implements OnInit {
 
   constructor(private manageService: ManageService) { }
   ordersList = [];
-  header = ['Order ID', 'Status', 'Action'];
+  header = ['Order ID', 'Status', 'Order Date', 'Action'];
   ngOnInit() {
     this.getOrdersList();
   }
@@ -20,6 +20,10 @@ export class ManageOrderComponent implements OnInit {
       console.log(res);
       if (res && res['data']) {
         this.ordersList = res['data'];
+        this.ordersList.forEach(element => {
+          element.created = new Date(element.created).toUTCString();
+        });
+        console.log(this.ordersList);
       }
     });
   }
